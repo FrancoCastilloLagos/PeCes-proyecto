@@ -1,0 +1,121 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MPSitio.master.cs" Inherits="PeCesWeb.MPSitio" %>
+
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - PeCe's</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <link href="~/Content/css" rel="stylesheet" type="text/css" />
+    <style>
+        .navbar-custom {
+            background-color: #0799b6;
+        }
+        .content-box {
+            background-color: #9cd2d3; 
+            border-radius: 10px; 
+            padding: 20px; 
+            margin: 20px 0; 
+            max-width: 1200px; 
+            width: 100%; 
+            margin: 0 auto;
+        }
+        .footer {
+            background-color: #f2e6cf; 
+            padding: 10px; 
+            text-align: center; 
+            position: relative; 
+            margin-top: 20px; 
+        }
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; 
+            justify-content: space-between;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+        .btnBuscar {
+            background-color: #114c5f;
+            border: none;
+            border-radius: 10px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            height: 35px;
+            width: 100px;
+            color: #fff;
+        }
+        .btnBuscar:hover {
+            background-color: #0056b3;
+        }
+        .form-group input[type="text"] {
+            width: 300px; 
+            padding: 8px; 
+            border-radius: 4px; 
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            margin-right: 5px;
+        }
+    </style>
+    <link href="~/images/Logo.png" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server" EnablePageMethods="true" />
+        
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-custom">
+            <div class="container navbar-custom-left">
+                <a class="navbar-brand" runat="server" href="~/Home">
+                    <img src="<%= ResolveUrl("~/images/Logo.png")  %>" alt="PeCe's Logo" style="height: 40px;" />
+                    PeCe's
+                </a>
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/AgregarTicket">Agregar Ticket</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/ListarTodos">Listar todos</a></li>
+                    </ul>
+                    <div class="search-container">
+                        <asp:TextBox ID="txtBusqueda" runat="server" CssClass="form-control" placeholder="Búsqueda avanzada de tickets" />
+                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" CssClass="btnBuscar" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container body-content main-container"> 
+            <div class="content-box">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+                <asp:ContentPlaceHolder ID="ContentExtra" runat="server"> 
+                </asp:ContentPlaceHolder>
+            </div>
+            <footer class="footer"> 
+                <p>&copy; <%: DateTime.Now.Year %> - PeCe's solutions</p>
+            </footer>
+        </div>
+    </form>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/Scripts/bootstrap.js") %>
+    </asp:PlaceHolder>
+</body>
+</html>
+
+
+
+
+
+
+
